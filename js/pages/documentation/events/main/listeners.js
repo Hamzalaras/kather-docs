@@ -1,9 +1,13 @@
 import { initEmitListener } from '../../../../systems/event/listeners.js';
 import { mapReceivers } from '../../../../utils/mapReceivers.js';
-import { getCachedRouteVal } from '../../../../routes/routes.js';
 
 const moreElementsEmitListener = () => initEmitListener({
     eventName: 'click:more-elements',
+    emitMethod: 'emit',
+});
+
+const hashLinksEmitListener = () => initEmitListener({
+    eventName: 'click:hash-links',
     emitMethod: 'emit',
 });
 
@@ -15,6 +19,13 @@ const documentationPageMainReceivers = () => {
             {
                 event: 'click',
                 listeners: [moreElementsEmitListener()],
+            },
+        ]
+    );
+    receivers.set('[id$="-link"]', [
+            {
+                event: 'click',
+                listeners: [hashLinksEmitListener()],
             },
         ]
     );

@@ -17,34 +17,40 @@ const introConfig = {
 const navigationLinks = [
     {
         href: "#query-params",
-        label: "Parameters: query parameters"
+        label: "Parameters: query parameters",
+        id: 'query-params-link',
     },
     {
         href: "#system-endpoint",
-        label: "Parameters: system endpoints"
+        label: "System: system endpoints",
+        id: 'system-endpoints-link',
     },
     {
         href: "#catalog-endpoint",
-        label: "Catalog: catalog endpoints"
+        label: "Catalog: catalog endpoints",
+        id: 'catalog-endpoints-link',
     },
     {
         href: "#poets-endpoint",
-        label: "Poets: poets endpoints"
+        label: "Poets: poets endpoints",
+        id: 'poets-endpoints-link',
     },
     {
         href: "#poems-endpoint",
-        label: "Poems: poems endpoints"
+        label: "Poems: poems endpoints",
+        id: 'poems-endpoints-link',
     },
     {
         href: "#lines-endpoint",
-        label: "Lines: lines endpoints"
+        label: "Lines: lines endpoints",
+        id: 'lines-endpoints-link',
     }
 ];
 
-const generateNavigationLink = ({ href, label }) => {
+const generateNavigationLink = ({ href, label, id }) => {
     return `
                     <li>
-                        <a href="${href}" class="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 bg-white hover:border-[#1B2A4A] hover:bg-slate-50/50 transition-all text-sm font-medium text-slate-700 hover:text-[#1B2A4A] group">
+                        <a href="${href}" id="${id}" class="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 bg-white hover:border-[#1B2A4A] hover:bg-slate-50/50 transition-all text-sm font-medium text-slate-700 hover:text-[#1B2A4A] group">
                             <span>${label}</span>
                             <span class="text-slate-400 group-hover:translate-x-0.5 transition-transform text-xs">→</span>
                         </a>
