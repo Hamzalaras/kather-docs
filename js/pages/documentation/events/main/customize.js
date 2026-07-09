@@ -9,11 +9,15 @@ export const makeDocumentationPageMainEventSystem = initPageEventSystemMaker({
 
 const registerToggleMore = initRegisterCb({ eventName: 'click:more-elements', registerMethod: 'on' });
 
+const registerHashLinksHandler = initRegisterCb({ eventName: 'click:hash-links', registerMethod: 'on' });
+
 export const registerDocumentationPageMainCustomEvents = ({ eventSystem , cbs }) => {
     
     const customEventsReferences = new Map();
     customEventsReferences.set('toggleMore:click:more-elements',
         registerToggleMore(eventSystem, cbs.toggleMore));
+    customEventsReferences.set('hashLinksHandler:click:hash-links',
+        registerHashLinksHandler(eventSystem, cbs.hashLinksHandler));
 
     return customEventsReferences;
 };
