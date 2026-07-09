@@ -15,6 +15,7 @@ const registerNonFatalErrorHandler = initRegisterCb({ eventName: 'non-fatal-erro
 
 const registerChangePageTo = initRegisterCb({ eventName: 'click:nav-bar', registerMethod: 'on' });
 
+const registerPopstateHandler = initRegisterCb({ eventName: 'popstate', registerMethod: 'on' });
 
 export const registerGlobalCustomEvents = ({ eventSystem, cbs }) => {
     const customEventsReferences = new Map();
@@ -31,6 +32,8 @@ export const registerGlobalCustomEvents = ({ eventSystem, cbs }) => {
 
     customEventsReferences.set('changePageTo:click:nav-bar',
         registerChangePageTo(eventSystem, cbs.changePageTo));
+    customEventsReferences.set('popstateHandler:popstate',
+        registerPopstateHandler(eventSystem, cbs.popstateHandler));
 
     return customEventsReferences;
 };

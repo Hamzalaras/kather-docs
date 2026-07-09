@@ -3,10 +3,12 @@ import { initPage } from './initPage.js';
 import { closePage } from './close.js';
 import { getTargetPath, addPathToHistory, getCurrentPath } from './pathManipulation.js';
 import { getGlobalEvents } from '../../globals/globalVariables/globalEventsSystems.js';
-
+import { getGlobalDepotValue } from '../../globals/globalVariables/globalDepot.js';
 
 export const changePageTo = async ({ currentPath, targetPath, eventObject, addToHistory = true }) => {
     const globalEventSystem = getGlobalEvents({ name: 'global' });
+    const flags = getGlobalDepotValue({ mainKey: 'flags' });
+    flags.openChangePageGate = true;
     
     const resolvedCurrentPath = currentPath ?? getCurrentPath();
     const resolvedTargetPath = targetPath ?? getTargetPath({ eventObject });
@@ -40,7 +42,9 @@ export const changePageTo = async ({ currentPath, targetPath, eventObject, addTo
         await initPage({ routeVal: targetRouteVal });
     } catch (error) {
         console.log(error);
-        // await globalEventSystem.emit({ eventName: 'fatal-error' });
+        await globalEventSystem.emit({ eventName: 'fatal-error' });
         return;
     }
+
+    setTimeout(() => flags.openChangePageGate = false, 0);
 };

@@ -21,6 +21,9 @@ const globalDepot = {
             poetsCount: 2351,
         },
     },
+    flags: {
+        openChangePageGate: false,
+    },
 };
 export const setInGlobalDepotValue = ({ value, mainKey, deepKeys = [] }) => {
     let holder = globalDepot;

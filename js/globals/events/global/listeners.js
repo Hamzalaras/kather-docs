@@ -12,6 +12,12 @@ const changePageToEmitListener = () => initEmitListener({
     addToHistory: true,
 });
 
+const popstateEmitListener = () => initEmitListener({
+    eventName: 'popstate',
+    emitMethod: 'emit',
+    addToHistory: false,
+});
+
 export const globalReceivers = () => {
     const receivers = new Map();
 
@@ -19,6 +25,10 @@ export const globalReceivers = () => {
             {
                 event: 'error',
                 listeners: [windowErrorEmitListener()],
+            },
+            {
+                event: 'hashchange',
+                listeners: [popstateEmitListener()],
             },
         ]
     );
